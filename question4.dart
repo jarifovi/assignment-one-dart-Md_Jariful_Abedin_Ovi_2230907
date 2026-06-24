@@ -32,12 +32,13 @@ abstract class Vehicle {
   // Concrete method
   void displayInfo() {
     // TODO: Display vehicle information
+    print("Vehicle Info: $year $brand $model");
   }
 
   // Add a method to calculate vehicle age (current year - vehicle year)
   int calculateAge() {
     // TODO: Calculate and return vehicle age
-    return 0;
+    return DateTime.now().year - year;
   }
 }
 
@@ -54,16 +55,19 @@ class Car extends Vehicle {
   @override
   void start() {
     // TODO: Implement car start method
+    print("Starting the car engine...");
   }
 
   @override
   void stop() {
     // TODO: Implement car stop method
+    print("Stopping the car engine...");
   }
 
   @override
   void displayInfo() {
     // TODO: Override to show car-specific info as shown in expected output
+    print("Vehicle Info: $year $brand $model ($numberOfDoors doors)");
   }
 }
 
@@ -79,16 +83,19 @@ class Motorcycle extends Vehicle {
   @override
   void start() {
     // TODO: Implement motorcycle start method
+    print("Starting the car engine...");
   }
 
   @override
   void stop() {
     // TODO: Implement motorcycle stop method
+    print("Stopping the car engine...");
   }
 
   @override
   void displayInfo() {
     // TODO: Override to show motorcycle-specific info as shown in expected output
+    print("Vehicle Info: $year $brand $model (Has windshield: $hasWindshield)");
   }
 }
 
@@ -99,4 +106,20 @@ void main() {
   // TODO: Loop through the list and call displayInfo(), start(), and stop()
 
   // TODO: Print the age of each vehicle using calculateAge()
+  List<Vehicle> vehicles = [
+    Car("Toyota", "Camry", 2020, 4),
+    Motorcycle("Honda", "CBR", 2021, true),
+  ];
+
+  for (var vehicle in vehicles) {
+    vehicle.displayInfo();
+    vehicle.start();
+    vehicle.stop();
+
+    if (vehicle is Car) {
+      print("Car age: ${vehicle.calculateAge()} years");
+    } else if (vehicle is Motorcycle) {
+      print("Motorcycle age: ${vehicle.calculateAge()} years");
+    }
+  }
 }
